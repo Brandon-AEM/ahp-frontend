@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8">
+  <title>AHP - Iniciar Sesión</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="left-panel">
+      <a href="index.html" style="display: inline-block; width: fit-content;">
+        <img src="logo.png" class="logo" alt="Logo AHP" style="cursor: pointer; vertical-align: middle;">
+      </a>
+      <h2>Iniciar sesión</h2>
+
+      <form class="login-form">
+        <div class="input-group">
+          <i data-lucide="mail" class="input-icon"></i>
+          <input id="email" type="email" placeholder="Correo institucional">
+        </div>
+        <div class="input-group">
+          <i data-lucide="lock" class="input-icon"></i>
+          <input id="password" type="password" placeholder="Contraseña">
+        </div>
+        <button type="button" class="submit-btn" onclick="login()">
+          Ingresar
+        </button>
+      </form>
+
+      <div class="register-section">
+        <p class="small-text">¿No tienes una cuenta?</p>
+        <p class="create-account" onclick="location.href='create-account.html'">Crear cuenta</p>
+      </div>
+
+    </div>
+
+    <div class="right-panel">
+      <div class="maps-card">MAPS</div>
+      <div class="tag">El nuevo</div>
+      <div class="tag">modelo educativo</div>
+      <div class="tag arrow">para ti →</div>
+    </div>
+  </div>
+
+<script> lucide.createIcons()</script>
+<script>
+async function login() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  if (!email || !password) {
+    alert('Por favor ingresa tu correo y contraseña');
+    return;
+  }
+  try {
+    const res = await fetch('https://ahp-proyecto.onrender.com/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ correo: email, password })
+    });
+    const data = await res.json();
+    if (res.ok) {
+      window.location.href = 'dashboard.html';
+    } else {
+      alert(data.error || 'Credenciales incorrectas');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Error de conexión con el servidor');
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>AHP - Bienvenido</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <button class="secondary-btn" style="position:absolute; top:20px; right:20px;" onclick="checkDb()">
+    PROBAR CONEXIÓN
+  </button><!-- Esta cosa ya no me sirve, borralo (Brandon de este momento no lo hice por flojera pero el tu del futuro debes hacerlo) -->
+
+  <div class="welcome-container">
+    <img src="logo.png" alt="AHP Logo" class="small-logo">
+    
+    <div class="drop-zone" id="dropArea">
+      <p>Arrastra y suelta un PDF aquí para subir</p>
+      <input type="file" id="pdfFile" accept="application/pdf" style="display:none;">
+      <button class="secondary-btn" onclick="document.getElementById('pdfFile').click()">O haz clic para buscar</button>
+      <p id="uploadStatus" style="font-size: 14px; margin-top: 15px;"></p>
+    </div>
+
+    <h1>Bienvenido a AHP</h1>
+    
+    <button class="primary-btn" onclick="location.href='login.html'">
+      iniciar sesión
+    </button>
+    <button class="secondary-btn" onclick="location.href='create-account.html'">
+      Crear cuenta
+    </button>
+  </div>
+
+<script>
+async function checkDb() {
+  try {
+    const res = await fetch('/api/health/mysql');
+    const data = await res.json();
+    if (data.mysqlConnected) alert("Conexión a MySQL exitosa.");
+    else alert("Error de conexión a MySQL.");
+  } catch(e) {
+    alert("Error de red intentando conectar con el servidor.");
+  }
+}
+
+// Lógica para el drag & drop del PDF (tal cual la tenían tus compañeros)
+const dropArea = document.getElementById('dropArea');
+const fileInput = document.getElementById('pdfFile');
+const status = document.getElementById('uploadStatus');
+
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, preventDefaults, false);
+});
+function preventDefaults(e) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+['dragenter', 'dragover'].forEach(eventName => {
+  dropArea.addEventListener(eventName, () => dropArea.classList.add('dragover'), false);
+});
+['dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, () => dropArea.classList.remove('dragover'), false);
+});
+
+dropArea.addEventListener('drop', (e) => {
+  const dt = e.dataTransfer;
+  const files = dt.files;
+  if(files.length) handleFile(files[0]);
+});
+
+fileInput.addEventListener('change', (e) => {
+  if(e.target.files.length) handleFile(e.target.files[0]);
+});
+
+function handleFile(file) {
+  if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+    alert('Por favor, sube solo archivos PDF.');
+    return;
+  }
+  uploadFile(file);
+}
+
+async function uploadFile(file) {
+  status.textContent = 'Subiendo ' + file.name + '...';
+  status.style.color = '#333';
+  
+  const formData = new FormData();
+  formData.append('pdf', file);
+
+  try {
+    const res = await fetch('/upload', { method: 'POST', body: formData });
+    const data = await res.json();
+    if (res.ok && data.ok) {
+      status.textContent = 'Subida exitosa. Candidato extraído correctamente.';
+      status.style.color = 'green';
+    } else {
+      status.textContent = 'Error: ' + (data.error || 'Subida fallida');
+      status.style.color = 'red';
+    }
+  } catch(err) {
+    status.textContent = 'Error de red al intentar subir.';
+    status.style.color = 'red';
+  }
+}
+</script>
+</body>
+</html>

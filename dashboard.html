@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AHP Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <img src="logo.png" alt="AHP Logo">
+    </div>
+
+    <div class="profile">
+        <div class="profile-icon" onclick="toggleMenu()">👤</div>
+
+        <div class="side-panel" id="menu">
+            <button onclick="openEntrevistasPendientes()">Entrevistas pendientes</button>
+            <button onclick="logout()">Cerrar sesión</button>
+        </div>
+    </div>
+
+</header>
+
+<main class="main">
+
+    <div class="filter-box">
+        <input type="text" id="searchInput" placeholder="Buscar vacante..." class="dropdown" oninput="loadVacantes()">
+        <button class="add-btn" onclick="createVacante()">+</button>
+        <button class="clear-btn" onclick="clearVacantesView()" title="Limpiar búsqueda y ver todas">↺</button>
+    </div>
+
+    <div class="vacantes-container" id="vacantes"></div>
+
+</main>
+
+<!-- ================= MODAL CV ================= -->
+
+<div class="modal" id="cvModal">
+    <div class="modal-content">
+
+        <span class="close-btn" onclick="closeModal()">✖</span>
+
+        <div class="cv-layout">
+            <div class="cv-photo"></div>
+
+            <div class="cv-info">
+                <h2 id="cvName">Nombre</h2>
+
+                <div class="row">
+                    <span id="cvSexo">Sexo</span>
+                    <span id="cvEdad">Edad</span>
+                </div>
+
+                <p id="cvCorreo">correo@email.com</p>
+                <p id="cvTelefono">Teléfono: --</p>
+                <p id="cvArea">Área: --</p>
+                <p id="cvExperiencia">Experiencia: --</p>
+
+                <div id="actionButtons">
+                    <button class="status-btn" onclick="updateStatus('ACEPTADO')">Aceptar</button>
+                    <button class="status-btn" onclick="updateStatus('RECHAZADO')">Rechazar</button>
+                </div>
+
+                <div id="interviewSection">
+                    <input type="datetime-local" id="interviewInput">
+                    <button class="interview-btn" onclick="saveInterview()">
+                        📅 Guardar entrevista
+                    </button>
+                    <p id="cvPassed" style="color:yellow; margin-top:10px;"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= MODAL PENDIENTES ================= -->
+
+<div class="modal" id="pendientesModal">
+    <div class="modal-content">
+
+        <span class="close-btn" onclick="closePendientes()">✖</span>
+
+        <h2 style="color:white;">Pendientes</h2>
+
+        <div id="pendientesList"></div>
+
+    </div>
+</div>
+
+<!-- ================= MODAL ENTREVISTAS PENDIENTES ================= -->
+
+<div class="modal" id="entrevistasModal">
+    <div class="modal-content entrevistas-modal-content">
+        <span class="close-btn" onclick="closeEntrevistasPendientes()">✖</span>
+        <h2 style="color:white;">Entrevistas pendientes</h2>
+        <div id="entrevistasList"></div>
+    </div>
+</div>
+
+<!-- ================= MODAL NUEVA VACANTE ================= -->
+
+<div class="modal" id="createVacanteModal">
+    <div class="modal-content vacante-create-content">
+        <span class="close-btn" onclick="closeCreateVacanteModal()">✖</span>
+        <h2 style="color:white;">Crear vacante</h2>
+
+        <div class="vacante-form-field">
+            <label for="vacanteTituloInput">Título</label>
+            <input id="vacanteTituloInput" type="text" placeholder="Ej. Profesor de Programación" />
+        </div>
+
+        <div class="vacante-form-field">
+            <label for="vacanteAreaSelect">Área de especialidad</label>
+            <select id="vacanteAreaSelect">
+                <option value="">Cargando áreas...</option>
+            </select>
+        </div>
+
+        <div class="vacante-form-actions">
+            <button class="status-btn" onclick="submitCreateVacante()">Guardar vacante</button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= MODAL INFO ================= -->
+
+<div class="modal" id="infoModal">
+    <div class="modal-content info-modal-content">
+        <span class="close-btn" onclick="closeInfoModal()">✖</span>
+        <h2 id="infoModalTitle" style="color:white;">Información</h2>
+        <p id="infoModalMessage" class="info-modal-message"></p>
+        <div class="vacante-form-actions">
+            <button class="status-btn" onclick="closeInfoModal()">Entendido</button>
+        </div>
+    </div>
+</div>
+
+<!-- load external script -->
+<script src="dashboard.js"></script>
+
+
+</body>
+</html>

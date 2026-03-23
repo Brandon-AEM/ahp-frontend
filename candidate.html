@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apply - AHP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="login-container" style="max-width:500px;margin:auto;">
+    <h2>Enviar CV / Registrarse como candidato</h2>
+    <form id="candidateForm">
+      <div class="input-group">
+        <input id="c_nombre" type="text" placeholder="Nombre completo" required>
+      </div>
+      <div class="input-group">
+        <input id="c_correo" type="email" placeholder="Correo" required>
+      </div>
+      <div class="input-group">
+        <input id="c_telefono" type="text" placeholder="Teléfono">
+      </div>
+      <div class="input-group">
+        <input id="c_area" type="text" placeholder="Área / Especialidad">
+      </div>
+      <div class="input-group">
+        <input id="c_experiencia" type="number" placeholder="Años de experiencia">
+      </div>
+      <div class="input-group">
+        <input id="c_vacante" type="number" placeholder="ID de vacante (opcional)">
+      </div>
+      <div class="input-group">
+        <label>Foto / CV (opcional)</label>
+        <input id="c_photo" type="file" accept="image/*,application/pdf">
+      </div>
+      <button type="button" class="submit-btn" onclick="submitCandidate()">Enviar</button>
+    </form>
+    <p id="feedback" class="success-message"></p>
+  </div>
+
+<script>
+async function submitCandidate() {
+  const form = document.getElementById('candidateForm');
+  const data = new FormData();
+  data.append('nombre', document.getElementById('c_nombre').value);
+  data.append('correo', document.getElementById('c_correo').value);
+  data.append('telefono', document.getElementById('c_telefono').value);
+  data.append('area_especialidad', document.getElementById('c_area').value);
+  data.append('experiencia_anos', document.getElementById('c_experiencia').value);
+  const vac = document.getElementById('c_vacante').value;
+  if (vac) data.append('vacante_id', vac);
+  const photo = document.getElementById('c_photo').files[0];
+  if (photo) data.append('photo', photo);
+
+  try {
+    const res = await fetch('https://ahp-proyecto.onrender.com/api/candidatos', {
+      method: 'POST',
+      body: data
+    });
+    const json = await res.json();
+    if (res.ok) {
+      document.getElementById('feedback').innerText = 'Registro enviado correctamente';
+      document.getElementById('feedback').style.display = 'block';
+      form.reset();
+    } else {
+      alert(json.error || 'Error');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Problema de red');
+  }
+}
+</script>
+
+</body>
+</html>

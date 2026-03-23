@@ -1,0 +1,707 @@
+/* ---------- RESET ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Niramit', sans-serif;
+  background: #e5e5e5;
+}
+
+/* ---------- WELCOME ---------- */
+
+.welcome-container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* increase gap to push content down */
+  padding-top: 80px; /* add some top padding to give room for drop zone */
+}
+
+/* small logo variant positioned top-left */
+.small-logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 80px;
+}
+
+/* drop/upload area */
+.drop-zone {
+  /* Le quitamos el position: absolute y las coordenadas para que respete el orden de la página */
+  padding: 60px;
+  border: 2px dashed #0f7a6c; /* Borde punteado y color verde institucional */
+  border-radius: 12px;
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+  min-height: 200px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Sombrita elegante */
+}
+
+.drop-zone:hover {
+  background: #f0fdf9;
+  border-color: #0c6156;
+  transform: translateY(-5px);
+}
+.drop-zone.dragover {
+  background: #e0f7ff;
+  border-color: #0066cc;
+}
+.drop-zone p {
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 18px;
+}
+.drop-zone button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.logo {
+  width: 140px;
+  margin-bottom: 20px;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease; /* Transición suave agregada */
+}
+
+.primary-btn {
+  background: #1e324b;
+  color: white;
+}
+
+.primary-btn:hover {
+  background: #0f7a6c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.secondary-btn {
+  background: #ccc;
+  color: #333;
+}
+
+.secondary-btn:hover {
+  background: #b3b3b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* ---------- LOGIN / CREATE LAYOUT ---------- */
+
+.login-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.left-panel {
+  width: 50%;
+  background: #eef2e6;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Esto baja todo al centro de la pantalla */
+}
+
+.right-panel {
+  width: 50%;
+  background: linear-gradient(135deg, #a4e1d5, #62c5a8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- INPUTS ---------- */
+
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border-radius: 8px;
+  border: none;
+  background: #e6e6e6;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: #1e324b;
+}
+
+/* ---------- ROW (PHONE SECTION) ---------- */
+
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.row .input-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.row .small {
+  flex: 0 0 90px;
+}
+
+/* ---------- BUTTON ---------- */
+
+/* ---------- BOTONES MEJORADOS ---------- */
+.submit-btn {
+  background: #1e324b;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.3s ease; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+}
+
+.submit-btn:hover {
+  background: #0f7a6c; 
+  transform: translateY(-3px); 
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2); 
+}
+
+/* ---------- ENLACES ---------- */
+.register-section {
+  margin-top: 35px;
+}
+
+.small-text {
+  color: #666;
+  font-size: 14px;
+}
+
+.create-account,
+.back-link {
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 5px;
+  color: #1e324b;
+  font-weight: 700;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.create-account:hover,
+.back-link:hover {
+  color: #0f7a6c;
+  transform: translateX(5px); 
+}
+
+/* ---------- MAPS CARD ---------- */
+
+.maps-card {
+  background: white;
+  padding: 15px 40px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 22px;
+  color: #0f7a6c;
+}
+
+.tag {
+  background: #7fd8b6;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #0f4d44;
+}
+.success-message {
+  background: #d4f5e9;
+  color: #0f7a6c;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 15px;
+  display: none;
+}
+/* ---------- DASHBOARD ---------- */
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#e7eee3;
+}
+
+/* HEADER */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:#dde6d8;
+}
+
+.logo img{
+    height:60px;
+}
+
+.profile{
+    position:relative;
+}
+
+.profile-icon{
+    font-size:28px;
+    cursor:pointer;
+}
+
+.side-panel{
+    position:absolute;
+    right:0;
+    top:50px;
+    background:#cfcfcf;
+    padding:20px;
+    border-radius:15px;
+    display:none;
+    flex-direction:column;
+    gap:15px;
+    width:150px;
+}
+
+.side-panel button{
+    background:#6f8a66;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.side-panel.show{
+    display:flex;
+}
+
+/* MAIN */
+.main{
+    padding:40px;
+}
+
+.filter-box{
+    background:#d6d6d6;
+    padding:20px;
+    border-radius:15px;
+    display:flex;
+    gap:15px;
+    align-items:center;
+    width:400px;
+}
+
+.dropdown{
+    padding:10px;
+    border-radius:20px;
+    border:none;
+}
+
+.add-btn{
+    background:#6f8a66;
+    color:white;
+    border:none;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+}
+
+  .clear-btn{
+    background:#8a8f96;
+    color:white;
+    border:none;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:16px;
+  }
+
+/* PROSPECTOS */
+.prospects-container{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(180px,1fr));
+    gap:25px;
+    background:#d6d6d6;
+    padding:30px;
+    border-radius:15px;
+}
+
+.card{
+    background:#5f7ea4;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    color:white;
+}
+
+.avatar{
+    width:70px;
+    height:70px;
+  background:#c9ced6 url('stockuserphoto.png') center/cover no-repeat;
+    border-radius:50%;
+    margin:0 auto 15px;
+}
+
+.view-btn{
+    margin-top:10px;
+    padding:8px 15px;
+    border:none;
+    border-radius:20px;
+    background:white;
+    color:#5f7ea4;
+    cursor:pointer;
+}
+/* ===== MODAL ===== */
+
+.modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    backdrop-filter: blur(4px);
+    z-index:999;
+}
+
+.show-modal{
+    display:flex;
+}
+
+.modal-content{
+    background:#6e6767;
+    width:800px;
+    border-radius:20px;
+    padding:30px;
+    position:relative;
+    animation:fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn{
+    from{transform:scale(0.9); opacity:0;}
+    to{transform:scale(1); opacity:1;}
+}
+
+.close-btn{
+    position:absolute;
+    top:15px;
+    right:20px;
+    cursor:pointer;
+    font-size:18px;
+    color:white;
+}
+
+.cv-layout{
+    display:flex;
+    gap:40px;
+    align-items:center;
+}
+
+.cv-photo{
+    width:220px;
+    height:220px;
+  background:#c9ced6 url('stockuserphoto.png') center/cover no-repeat;
+    border-radius:50%;
+}
+
+.cv-info{
+    background:#d6d6d6;
+    padding:20px;
+    border-radius:15px;
+    width:100%;
+}
+
+.cv-info h2{
+    background:#5e5a5a;
+    color:white;
+    padding:10px;
+    border-radius:10px;
+}
+
+.row{
+    display:flex;
+    gap:15px;
+    margin:10px 0;
+}
+
+.row span{
+    background:#5e5a5a;
+    color:white;
+    padding:8px 15px;
+    border-radius:10px;
+}
+
+.cv-info p{
+    background:#5e5a5a;
+    color:white;
+    padding:8px 15px;
+    border-radius:10px;
+}
+
+.cv-info select{
+    width:100%;
+    margin-top:10px;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+}
+
+.interview-btn{
+    margin-top:15px;
+    padding:10px;
+    border:none;
+    border-radius:15px;
+    background:#6f8a66;
+    color:white;
+    cursor:pointer;
+}
+
+/* additional styles for new elements */
+.status-btn { margin:5px; padding:8px 12px; border:none; border-radius:6px; cursor:pointer; }
+.status-btn:first-child { background:#4caf50; color:white; }
+.status-btn:last-child { background:#f44336; color:white; }
+.pending-item { background:#d6d6d6; margin:8px 0; padding:8px; border-radius:8px; }
+
+.vacante-create-content {
+  width: 460px;
+}
+
+.vacante-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.vacante-form-field label {
+  color: #fff;
+  font-weight: 600;
+}
+
+.vacante-form-field input,
+.vacante-form-field select {
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.vacante-form-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.info-modal-content {
+  width: 460px;
+  background: #4a5568;
+}
+
+.info-modal-message {
+  color: #edf2f7;
+  margin-top: 10px;
+  line-height: 1.45;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.empty-candidates-state {
+  width: 100%;
+  background: #eef2f7;
+  border: 1px dashed #98a8b8;
+  border-radius: 14px;
+  padding: 28px;
+  text-align: center;
+  color: #2b4258;
+}
+
+.empty-candidates-state h3 {
+  margin-bottom: 8px;
+}
+
+.empty-candidates-state p {
+  margin-bottom: 16px;
+}
+
+.entrevistas-modal-content {
+  width: 560px;
+}
+
+/* Vacancies recommendation modal on upload page */
+.vacantes-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1200;
+  padding: 20px;
+}
+
+.vacantes-modal.show {
+  display: flex;
+}
+
+.vacantes-modal-card {
+  width: min(780px, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #f7f8f5;
+  border-radius: 14px;
+  padding: 22px;
+  position: relative;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.26);
+}
+
+.vacantes-modal-card h2 {
+  margin-bottom: 8px;
+  color: #1e324b;
+}
+
+.vacantes-subtitle {
+  margin-bottom: 16px;
+  color: #4f5e55;
+  font-size: 14px;
+}
+
+.vacantes-close-btn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+  color: #3f3f3f;
+}
+
+.vacantes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.vacante-card {
+  border: 1px solid #d2d9d1;
+  border-radius: 10px;
+  background: #fff;
+  padding: 14px;
+}
+
+.vacante-card h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+  color: #223548;
+}
+
+.vacante-meta {
+  font-size: 13px;
+  color: #55655c;
+  margin-bottom: 10px;
+}
+
+.vacante-apply-btn {
+  background: #1e324b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.vacante-apply-btn.is-disabled,
+.vacante-apply-btn:disabled {
+  background: #87959f;
+  cursor: not-allowed;
+}
+
+.vacante-status {
+  min-height: 18px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #2f5440;
+}
+
+.vacante-empty {
+  background: #fff;
+  border: 1px dashed #bcc5bc;
+  border-radius: 10px;
+  padding: 14px;
+  color: #4f5e55;
+}
+/* ---------- BOTÓN DEL OJITO ---------- */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.5; 
+  transition: opacity 0.2s ease;
+  color: #1e324b;
+}
+
+.toggle-password:hover {
+  opacity: 1; 
+}
+
+.toggle-password i {
+  width: 18px;
+  height: 18px;
+}

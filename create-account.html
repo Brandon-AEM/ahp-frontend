@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8">
+  <title>AHP - Crear Cuenta</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="left-panel">
+      <a href="index.html" style="display: inline-block; width: fit-content;">
+        <img src="logo.png" class="logo" alt="Logo AHP" style="cursor: pointer; vertical-align: middle;">
+      </a>
+      <h2>Crear cuenta</h2>
+
+      <p class="back-link" onclick="location.href='login.html'">
+        ← Volver a Iniciar Sesión
+      </p>
+
+      <form class="login-form">
+        <div class="input-group">
+          <i data-lucide="user" class="input-icon"></i>
+          <input id="name" type="text" placeholder="Nombre(s)">
+        </div>
+
+        <div class="row">
+          <div class="input-group small">
+            <input id="phone_code" type="text" placeholder="+52">
+          </div>
+          <div class="input-group">
+            <i data-lucide="phone" class="input-icon"></i>
+            <input id="phone" type="text" placeholder="Teléfono">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <i data-lucide="mail" class="input-icon"></i>
+          <input id="email" type="email" placeholder="Correo institucional">
+        </div>
+
+        <div class="input-group">
+          <i data-lucide="lock" class="input-icon"></i>
+          <input id="password" type="password" placeholder="Contraseña">
+          <button type="button" class="toggle-password" onclick="toggleVisibility('password', this)" title="Mostrar/Ocultar contraseña">
+             <i data-lucide="eye"></i>
+          </button>
+        </div>
+
+        <div class="input-group">
+          <i data-lucide="lock" class="input-icon"></i>
+          <input id="confirmPassword" type="password" placeholder="Confirmar contraseña">
+          <button type="button" class="toggle-password" onclick="toggleVisibility('confirmPassword', this)" title="Mostrar/Ocultar contraseña">
+             <i data-lucide="eye"></i>
+          </button>
+        </div>
+
+        <div class="input-group">
+          <i data-lucide="building-2" class="input-icon"></i>
+          <input id="campus" type="text" placeholder="Campus">
+        </div>
+
+        <button type="button" class="submit-btn" onclick="register()">
+          Registrarse
+        </button>
+      </form>
+    </div>
+
+    <div class="right-panel">
+      <div class="maps-card">MAPS</div>
+      <div class="tag">El nuevo</div>
+      <div class="tag">modelo educativo</div>
+      <div class="tag arrow">para ti →</div>
+    </div>
+  </div>
+
+<script>
+async function register() {
+  const nombre = document.getElementById('name').value;
+  const telefono = document.getElementById('phone').value;
+  const correo = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const confirm = document.getElementById('confirmPassword').value;
+  const campus = document.getElementById('campus').value;
+  
+  if (!nombre || !correo || !password) {
+    alert('El nombre, correo y contraseña son obligatorios');
+    return;
+  }
+  if (password !== confirm) {
+    alert('Las contraseñas no coinciden');
+    return;
+  }
+  try {
+    const res = await fetch('https://ahp-proyecto.onrender.com/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre, correo, telefono, campus, password })
+    });
+    const data = await res.json();
+    if (res.ok) {
+      window.location.href = 'dashboard.html';
+    } else {
+      alert(data.error || 'Fallo en el registro');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Error de conexión con el servidor');
+  }
+}
+</script>
+<script> lucide.createIcons()</script>
+<script>
+// Función para mostrar/ocultar contraseña
+function toggleVisibility(inputId, buttonElement) {
+  const input = document.getElementById(inputId);
+  const icon = buttonElement.querySelector('i'); 
+  
+  if (input.type === "password") {
+    input.type = "text";
+    buttonElement.style.opacity = "1"; 
+  } else {
+    input.type = "password";
+    buttonElement.style.opacity = "0.5";
+  }
+}
+</script>
+</body>
+</html>

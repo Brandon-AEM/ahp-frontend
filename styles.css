@@ -705,3 +705,21 @@ body{
   width: 18px;
   height: 18px;
 }
+
+/* --- DISEÑO DE CUADRÍCULA PARA LAS VACANTES --- */
+#vacantes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+  align-items: start;
+}
+
+#vacantes .card {
+  transition: transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#vacantes .card:hover {
+  transform: translateY(-5px);
+}

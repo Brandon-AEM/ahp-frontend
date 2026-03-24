@@ -349,7 +349,7 @@ function renderAreaOptions() {
 
   select.innerHTML = '<option value="">Selecciona un area</option>';
 
-  // --- INICIO DE CÓDIGO NUEVO (Salvavidas si la BD está vacía) ---
+  // --- INICIO DE CÓDIGO NUEVO (Opciones creadas por defecto) ---
   if (areasEspecialidad.length === 0) {
     areasEspecialidad = [
       { nombre: 'Sistemas y Tecnología' },

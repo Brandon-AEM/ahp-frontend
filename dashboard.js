@@ -348,6 +348,18 @@ function renderAreaOptions() {
   if (!select) return;
 
   select.innerHTML = '<option value="">Selecciona un area</option>';
+
+  // --- INICIO DE CÓDIGO NUEVO (Salvavidas si la BD está vacía) ---
+  if (areasEspecialidad.length === 0) {
+    areasEspecialidad = [
+      { nombre: 'Sistemas y Tecnología' },
+      { nombre: 'Recursos Humanos' },
+      { nombre: 'Ventas y Marketing' },
+      { nombre: 'Administración y Finanzas' }
+    ];
+  }
+  // --- FIN DE CÓDIGO NUEVO ---
+
   areasEspecialidad.forEach((area) => {
     const option = document.createElement('option');
     option.value = area.nombre;

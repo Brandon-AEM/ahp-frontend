@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <title>AHP - Bienvenido</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
-  <button class="secondary-btn" style="position:absolute; top:20px; right:20px;" onclick="checkDb()">
+  <button class="secondary-btn" style="position:absolute; top:20px; right:20px; z-index: 9999; cursor: pointer;" onclick="checkDb()">
     PROBAR CONEXIÓN
-  </button><!-- Esta cosa ya no me sirve, borralo (Brandon de este momento no lo hice por flojera pero el tu del futuro debes hacerlo) -->
+  </button>
 
   <div class="welcome-container">
     <img src="logo.png" alt="AHP Logo" class="small-logo">
@@ -18,13 +19,13 @@
       <p>Arrastra y suelta un PDF aquí para subir</p>
       <input type="file" id="pdfFile" accept="application/pdf" style="display:none;">
       <button class="secondary-btn" onclick="document.getElementById('pdfFile').click()">O haz clic para buscar</button>
-      <p id="uploadStatus" style="font-size: 14px; margin-top: 15px;"></p>
+      <p id="uploadStatus" style="font-size: 14px; margin-top: 15px; font-weight: bold;"></p>
     </div>
 
     <h1>Bienvenido a AHP</h1>
     
     <button class="primary-btn" onclick="location.href='login.html'">
-      iniciar sesión
+      Iniciar sesión
     </button>
     <button class="secondary-btn" onclick="location.href='create-account.html'">
       Crear cuenta
@@ -32,18 +33,20 @@
   </div>
 
 <script>
+if(typeof lucide !== 'undefined') lucide.createIcons();
+
+const API_BASE_URL = 'https://ahp-proyecto.onrender.com';
+
 async function checkDb() {
   try {
-    const res = await fetch('/api/health/mysql');
-    const data = await res.json();
-    if (data.mysqlConnected) alert("Conexión a MySQL exitosa.");
-    else alert("Error de conexión a MySQL.");
+    const res = await fetch(`${API_BASE_URL}/api/health/mysql`);
+    if (res.ok) alert("¡Conexión exitosa con el servidor en Render!");
+    else alert("El servidor respondió, pero hay un problema con la base de datos.");
   } catch(e) {
-    alert("Error de red intentando conectar con el servidor.");
+    alert("Error de red: No se pudo contactar al servidor en Render.");
   }
 }
 
-// Lógica para el drag & drop del PDF (tal cual la tenían tus compañeros)
 const dropArea = document.getElementById('dropArea');
 const fileInput = document.getElementById('pdfFile');
 const status = document.getElementById('uploadStatus');
@@ -51,13 +54,16 @@ const status = document.getElementById('uploadStatus');
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
   dropArea.addEventListener(eventName, preventDefaults, false);
 });
+
 function preventDefaults(e) {
   e.preventDefault();
   e.stopPropagation();
 }
+
 ['dragenter', 'dragover'].forEach(eventName => {
   dropArea.addEventListener(eventName, () => dropArea.classList.add('dragover'), false);
 });
+
 ['dragleave', 'drop'].forEach(eventName => {
   dropArea.addEventListener(eventName, () => dropArea.classList.remove('dragover'), false);
 });
@@ -85,20 +91,25 @@ async function uploadFile(file) {
   status.style.color = '#333';
   
   const formData = new FormData();
-  formData.append('pdf', file);
+  formData.append('photo', file);
+  formData.append('nombre', 'Candidato Express');
+  formData.append('correo', 'test_upload@ahp.com');
 
   try {
-    const res = await fetch('/upload', { method: 'POST', body: formData });
+    const res = await fetch(`${API_BASE_URL}/api/candidatos`, { 
+      method: 'POST', 
+      body: formData 
+    });
     const data = await res.json();
-    if (res.ok && data.ok) {
-      status.textContent = 'Subida exitosa. Candidato extraído correctamente.';
+    if (res.ok) {
+      status.textContent = '¡Subida exitosa a Render!';
       status.style.color = 'green';
     } else {
-      status.textContent = 'Error: ' + (data.error || 'Subida fallida');
+      status.textContent = 'Error: ' + (data.error || 'Fallo en la subida');
       status.style.color = 'red';
     }
   } catch(err) {
-    status.textContent = 'Error de red al intentar subir.';
+    status.textContent = 'Error de red: El servidor de Render no respondió.';
     status.style.color = 'red';
   }
 }

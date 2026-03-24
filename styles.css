@@ -705,83 +705,46 @@ body{
   width: 18px;
   height: 18px;
 /* --- DISEÑO RESPONSIVO DE VACANTES (PC Y CELULAR) --- */
-#vacantes {
-  display: grid;
-  /* En celulares: 1 columna. En PC: columnas de mínimo 280px */
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
-  padding: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-#vacantes .card {
-  background: #ffffff !important; /* Forzamos color blanco profesional */
-  color: #1e324b !important;
-  border-radius: 15px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  border: 1px solid #e0e0e0;
-  transition: all 0.3s ease;
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#vacantes .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-  border-color: #0f7a6c;
-}
-
-#vacantes .card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 12px;
-  color: #1e324b;
-}
-
-/* Ajuste para que en celular no se vea apretado */
 /* ============================================================
-   1. DISEÑO GLOBAL DE VACANTES (Para Laptop y PC)
+   1. DISEÑO DE CUADRÍCULA (Para Laptop y Tablet)
    ============================================================ */
 #vacantes {
-  display: grid;
-  /* Crea columnas de mínimo 300px. En laptop saldrán varias, en tablets 2. */
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-  padding: 30px;
-  max-width: 1300px;
-  margin: 0 auto;
+  display: grid !important;
+  /* Crea columnas de mínimo 300px. En laptop saldrán varias, en celulares 1. */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  gap: 25px !important;
+  padding: 30px !important;
+  max-width: 1300px !important;
+  margin: 0 auto !important;
 }
 
 #vacantes .card {
   background: #ffffff !important;
   color: #1e324b !important;
-  border-radius: 15px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  border: 1px solid #e0e0e0;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  border-radius: 15px !important;
+  padding: 25px !important;
+  text-align: center !important;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1) !important;
+  border: 1px solid #e0e0e0 !important;
+  min-height: 200px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
 }
 
 /* ============================================================
-   2. REGLAS PARA MÓVILES Y TABLETS (Pantallas de menos de 800px)
+   2. REGLAS UNIVERSALES PARA MÓVILES (Pantallas < 800px)
    ============================================================ */
 @media (max-width: 800px) {
   
-  /* Forzamos que el Login y Registro se vean uno arriba del otro */
+  /* Forzamos que el Login y Registro se apilen verticalmente */
   .login-container {
     flex-direction: column !important;
     height: auto !important;
     display: flex !important;
   }
 
+  /* Los paneles ocupan el 100% en cualquier celular o tablet */
   .left-panel, .right-panel {
     width: 100% !important;
     min-width: 100% !important;
@@ -789,21 +752,21 @@ body{
     flex: none !important;
   }
 
-  /* El panel verde de MAPS sube para ser el encabezado en el celular */
+  /* El panel verde de MAPS sube para ser el encabezado */
   .right-panel {
-    order: -1; 
-    min-height: 200px;
+    order: -1 !important; 
+    min-height: 200px !important;
   }
 
-  /* En celulares muy angostos, forzamos una sola columna de vacantes */
-  #vacantes {
-    grid-template-columns: 1fr !important;
-    padding: 15px;
-  }
-  
+  /* Ajuste de buscador y encabezado en móvil */
   .header {
-    flex-direction: column;
-    gap: 15px;
-    }
+    flex-direction: column !important;
+    gap: 15px !important;
+    text-align: center !important;
   }
-}
+
+  .filter-box {
+    width: 100% !important;
+    flex-direction: column !important;
+  }
+}}

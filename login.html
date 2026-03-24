@@ -61,7 +61,12 @@ async function login() {
     });
     const data = await res.json();
     if (res.ok) {
+      // Esta línea guarda el pase en el navegador
+      localStorage.setItem('token', data.token); 
+
+      // Y luego te manda al dashboard
       window.location.href = 'dashboard.html';
+    }
     } else {
       alert(data.error || 'Credenciales incorrectas');
     }

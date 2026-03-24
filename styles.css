@@ -751,66 +751,52 @@ body{
 }
 }
 /* ============================================================
-   AJUSTES PARA CELULARES Y TABLETS
+   DISEÑO UNIVERSAL RESPONSIVO (Móviles, Tablets y Laptops)
    ============================================================ */
 
+/* Se activa en CUALQUIER dispositivo con pantalla menor a 768px */
 @media (max-width: 768px) {
-  /* --- AJUSTES DE LOGIN Y REGISTRO --- */
+  
+  /* 1. LOGIN Y REGISTRO: De lado a lado -> Uno arriba de otro */
   .login-container {
-    flex-direction: column; /* Apila los paneles verticalmente */
-    height: auto;
+    flex-direction: column !important;
+    height: auto !important;
     min-height: 100vh;
   }
 
   .left-panel, .right-panel {
-    width: 100% !important; /* Cada panel ocupa todo el ancho */
-    padding: 40px 20px;
+    width: 100% !important; 
+    padding: 30px 20px !important;
+    flex: none !important;
   }
 
   .right-panel {
-    order: -1; /* Pone el panel de color (MAPS) arriba en el celular */
-    min-height: 250px;
+    order: -1; /* El panel verde sube para ser el encabezado */
+    min-height: 200px;
   }
 
-  .login-form {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  /* --- AJUSTES DEL DASHBOARD --- */
+  /* 2. DASHBOARD: Ajuste de espaciados */
   .header {
     flex-direction: column;
-    padding: 15px;
     text-align: center;
+    padding: 20px 10px;
     gap: 15px;
   }
 
-  .main {
+  /* 3. VACANTES: Cuadrícula inteligente */
+  #vacantes {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+    gap: 15px;
     padding: 15px;
   }
 
-  .filter-box {
-    width: 100% !important; /* El buscador ocupa todo el ancho */
-    flex-direction: column;
-    gap: 10px;
+  /* 4. FORMULARIOS: Inputs cómodos para los dedos */
+  input, button {
+    font-size: 16px !important; 
+    padding: 12px !important;
   }
 
-  .filter-box input {
-    width: 100%;
-  }
-
-  /* --- AJUSTES DE TARJETAS DE VACANTES --- */
-  #vacantes {
-    grid-template-columns: 1fr !important; /* Una sola columna en celulares */
-    padding: 10px;
-  }
-
-  .card {
-    margin-bottom: 10px;
-  }
-
-  /* Ajuste para el Modal de Candidatos en celular */
+  /* 5. MODAL DE CANDIDATOS: Ajuste para pantallas pequeñas */
   .modal-content {
     width: 95% !important;
     padding: 15px;
@@ -820,9 +806,12 @@ body{
     flex-direction: column;
     gap: 20px;
   }
+}
 
-  .cv-photo {
-    width: 150px;
-    height: 150px;
+/* Ajuste extra para celulares muy delgados */
+@media (max-width: 400px) {
+  .maps-card {
+    font-size: 16px;
+    width: 90%;
   }
 }

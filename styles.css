@@ -750,3 +750,79 @@ body{
   }
 }
 }
+/* ============================================================
+   AJUSTES PARA CELULARES Y TABLETS (RESPONSIVE DESIGN)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* --- AJUSTES DE LOGIN Y REGISTRO --- */
+  .login-container {
+    flex-direction: column; /* Apila los paneles verticalmente */
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .left-panel, .right-panel {
+    width: 100% !important; /* Cada panel ocupa todo el ancho */
+    padding: 40px 20px;
+  }
+
+  .right-panel {
+    order: -1; /* Pone el panel de color (MAPS) arriba en el celular */
+    min-height: 250px;
+  }
+
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* --- AJUSTES DEL DASHBOARD --- */
+  .header {
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .main {
+    padding: 15px;
+  }
+
+  .filter-box {
+    width: 100% !important; /* El buscador ocupa todo el ancho */
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-box input {
+    width: 100%;
+  }
+
+  /* --- AJUSTES DE TARJETAS DE VACANTES --- */
+  #vacantes {
+    grid-template-columns: 1fr !important; /* Una sola columna en celulares */
+    padding: 10px;
+  }
+
+  .card {
+    margin-bottom: 10px;
+  }
+
+  /* Ajuste para el Modal de Candidatos en celular */
+  .modal-content {
+    width: 95% !important;
+    padding: 15px;
+  }
+
+  .cv-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .cv-photo {
+    width: 150px;
+    height: 150px;
+  }
+}

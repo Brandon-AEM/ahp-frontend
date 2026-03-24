@@ -1,5 +1,16 @@
 // script for dashboard interactions
-
+// --- PARCHE MAESTRO PARA ENVIAR EL PASE AL SERVIDOR ---
+const originalFetch = window.fetch;
+window.fetch = function(url, options = {}) {
+  options.credentials = 'include';
+  options.headers = options.headers || {};
+  const token = localStorage.getItem('token');
+  if (token && token !== 'undefined') {
+    options.headers['Authorization'] = 'Bearer ' + token;
+  }
+  return originalFetch(url, options);
+};
+// ------------------------------------------------------
 let selectedVacante = null;
 let selectedCandidate = null;
 let areasEspecialidad = [];

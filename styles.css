@@ -1,5 +1,80 @@
 /* ---------- RESET ---------- */
 
+/* ============================================================
+   PARCHE MAESTRO BLINDADO (Pegado en la Línea 1)
+   ============================================================ */
+
+/* 1. LAPTOP: Cuadrícula y diseño de la tarjeta */
+#vacantes, .prospects-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  gap: 20px !important;
+  padding: 20px !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  align-items: start !important;
+}
+
+/* Forzamos a que la tarjeta pase de azul a un recuadro blanco elegante */
+#vacantes .card, .prospects-container .card {
+  background: #ffffff !important;
+  color: #1e324b !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+  border: 1px solid #dee2e6 !important;
+  width: 100% !important;
+}
+
+/* 2. CELULARES: Apilar paneles, encabezados y buscar */
+@media (max-width: 800px) {
+  
+  /* Inicio de sesión y Registro vertical */
+  .login-container {
+    flex-direction: column !important;
+    display: flex !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+
+  .left-panel, .right-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 30px 20px !important;
+    flex: none !important;
+  }
+
+  .right-panel {
+    order: -1 !important; /* Panel verde MAPS siempre arriba */
+    min-height: 200px !important;
+  }
+
+  /* Acomodo del Dashboard Móvil */
+  .header {
+    flex-direction: column !important;
+    gap: 15px !important;
+    padding: 15px !important;
+    height: auto !important;
+  }
+
+  .filter-box {
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+  }
+
+  .filter-box input {
+    width: 100% !important;
+  }
+
+  /* Forzamos 1 sola columna en el celular */
+  #vacantes, .prospects-container {
+    grid-template-columns: 1fr !important;
+    padding: 15px !important;
+  }
+}
+/* ============================================================ */
+
 * {
   margin: 0;
   padding: 0;

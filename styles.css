@@ -1,80 +1,4 @@
 /* ---------- RESET ---------- */
-
-/* ============================================================
-   PARCHE MAESTRO BLINDADO (Pegado en la Línea 1)
-   ============================================================ */
-
-/* 1. LAPTOP: Cuadrícula y diseño de la tarjeta */
-#vacantes, .prospects-container {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-  gap: 20px !important;
-  padding: 20px !important;
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  align-items: start !important;
-}
-
-/* Forzamos a que la tarjeta pase de azul a un recuadro blanco elegante */
-#vacantes .card, .prospects-container .card {
-  background: #ffffff !important;
-  color: #1e324b !important;
-  border-radius: 12px !important;
-  padding: 20px !important;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
-  border: 1px solid #dee2e6 !important;
-  width: 100% !important;
-}
-
-/* 2. CELULARES: Apilar paneles, encabezados y buscar */
-@media (max-width: 800px) {
-  
-  /* Inicio de sesión y Registro vertical */
-  .login-container {
-    flex-direction: column !important;
-    display: flex !important;
-    height: auto !important;
-    min-height: 100vh !important;
-  }
-
-  .left-panel, .right-panel {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 30px 20px !important;
-    flex: none !important;
-  }
-
-  .right-panel {
-    order: -1 !important; /* Panel verde MAPS siempre arriba */
-    min-height: 200px !important;
-  }
-
-  /* Acomodo del Dashboard Móvil */
-  .header {
-    flex-direction: column !important;
-    gap: 15px !important;
-    padding: 15px !important;
-    height: auto !important;
-  }
-
-  .filter-box {
-    width: 100% !important;
-    flex-direction: column !important;
-    gap: 15px !important;
-  }
-
-  .filter-box input {
-    width: 100% !important;
-  }
-
-  /* Forzamos 1 sola columna en el celular */
-  #vacantes, .prospects-container {
-    grid-template-columns: 1fr !important;
-    padding: 15px !important;
-  }
-}
-/* ============================================================ */
-
 * {
   margin: 0;
   padding: 0;
@@ -87,7 +11,6 @@ body {
 }
 
 /* ---------- WELCOME ---------- */
-
 .welcome-container {
   position: relative;
   height: 100vh;
@@ -95,11 +18,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px; /* increase gap to push content down */
-  padding-top: 80px; /* add some top padding to give room for drop zone */
+  gap: 30px; 
+  padding-top: 80px; 
 }
 
-/* small logo variant positioned top-left */
 .small-logo {
   position: absolute;
   top: 20px;
@@ -107,11 +29,9 @@ body {
   width: 80px;
 }
 
-/* drop/upload area */
 .drop-zone {
-  /* Le quitamos el position: absolute y las coordenadas para que respete el orden de la página */
   padding: 60px;
-  border: 2px dashed #0f7a6c; /* Borde punteado y color verde institucional */
+  border: 2px dashed #0f7a6c; 
   border-radius: 12px;
   text-align: center;
   width: 90%;
@@ -119,7 +39,7 @@ body {
   min-height: 200px;
   background: #ffffff;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Sombrita elegante */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
 }
 
 .drop-zone:hover {
@@ -153,7 +73,7 @@ body {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.3s ease; /* Transición suave agregada */
+  transition: all 0.3s ease; 
 }
 
 .primary-btn {
@@ -179,7 +99,6 @@ body {
 }
 
 /* ---------- LOGIN / CREATE LAYOUT ---------- */
-
 .login-container {
   width: 100%;
   height: 100vh;
@@ -192,7 +111,7 @@ body {
   padding: 60px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Esto baja todo al centro de la pantalla */
+  justify-content: center; 
 }
 
 .right-panel {
@@ -217,7 +136,6 @@ body {
 }
 
 /* ---------- INPUTS ---------- */
-
 .input-group {
   position: relative;
   margin-bottom: 15px;
@@ -243,8 +161,6 @@ body {
   color: #1e324b;
 }
 
-/* ---------- ROW (PHONE SECTION) ---------- */
-
 .row {
   display: flex;
   gap: 10px;
@@ -259,8 +175,6 @@ body {
 .row .small {
   flex: 0 0 90px;
 }
-
-/* ---------- BUTTON ---------- */
 
 /* ---------- BOTONES MEJORADOS ---------- */
 .submit-btn {
@@ -311,7 +225,6 @@ body {
 }
 
 /* ---------- MAPS CARD ---------- */
-
 .maps-card {
   background: white;
   padding: 15px 40px;
@@ -337,15 +250,8 @@ body {
   margin-bottom: 15px;
   display: none;
 }
+
 /* ---------- DASHBOARD ---------- */
-
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#e7eee3;
-}
-
-/* HEADER */
 .header{
     display:flex;
     justify-content:space-between;
@@ -393,7 +299,6 @@ body{
     display:flex;
 }
 
-/* MAIN */
 .main{
     padding:40px;
 }
@@ -425,7 +330,7 @@ body{
     font-size:18px;
 }
 
-  .clear-btn{
+.clear-btn{
     background:#8a8f96;
     color:white;
     border:none;
@@ -434,31 +339,12 @@ body{
     border-radius:50%;
     cursor:pointer;
     font-size:16px;
-  }
-
-/* PROSPECTOS */
-.prospects-container{
-    margin-top:40px;
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(180px,1fr));
-    gap:25px;
-    background:#d6d6d6;
-    padding:30px;
-    border-radius:15px;
-}
-
-.card{
-    background:#5f7ea4;
-    border-radius:15px;
-    padding:20px;
-    text-align:center;
-    color:white;
 }
 
 .avatar{
     width:70px;
     height:70px;
-  background:#c9ced6 url('stockuserphoto.png') center/cover no-repeat;
+    background:#c9ced6 url('stockuserphoto.png') center/cover no-repeat;
     border-radius:50%;
     margin:0 auto 15px;
 }
@@ -472,8 +358,8 @@ body{
     color:#5f7ea4;
     cursor:pointer;
 }
-/* ===== MODAL ===== */
 
+/* ===== MODAL ===== */
 .modal{
     position:fixed;
     top:0;
@@ -524,7 +410,7 @@ body{
 .cv-photo{
     width:220px;
     height:220px;
-  background:#c9ced6 url('stockuserphoto.png') center/cover no-repeat;
+    background:#c9ced6 url('stockuserphoto.png') center/cover no-repeat;
     border-radius:50%;
 }
 
@@ -539,19 +425,6 @@ body{
     background:#5e5a5a;
     color:white;
     padding:10px;
-    border-radius:10px;
-}
-
-.row{
-    display:flex;
-    gap:15px;
-    margin:10px 0;
-}
-
-.row span{
-    background:#5e5a5a;
-    color:white;
-    padding:8px 15px;
     border-radius:10px;
 }
 
@@ -580,7 +453,6 @@ body{
     cursor:pointer;
 }
 
-/* additional styles for new elements */
 .status-btn { margin:5px; padding:8px 12px; border:none; border-radius:6px; cursor:pointer; }
 .status-btn:first-child { background:#4caf50; color:white; }
 .status-btn:last-child { background:#f44336; color:white; }
@@ -653,7 +525,6 @@ body{
   width: 560px;
 }
 
-/* Vacancies recommendation modal on upload page */
 .vacantes-modal {
   position: fixed;
   inset: 0;
@@ -757,7 +628,7 @@ body{
   padding: 14px;
   color: #4f5e55;
 }
-/* ---------- BOTÓN DEL OJITO ---------- */
+
 .toggle-password {
   position: absolute;
   right: 12px;
@@ -779,69 +650,89 @@ body{
 .toggle-password i {
   width: 18px;
   height: 18px;
-/* --- DISEÑO RESPONSIVO DE VACANTES (PC Y CELULAR) --- */
-/* ============================================================
-   1. DISEÑO DE CUADRÍCULA (Para Laptop y Tablet)
-   ============================================================ */
-#vacantes {
-  display: grid !important;
-  /* Crea columnas de mínimo 300px. En laptop saldrán varias, en celulares 1. */
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
-  gap: 25px !important;
-  padding: 30px !important;
-  max-width: 1300px !important;
-  margin: 0 auto !important;
 }
 
-#vacantes .card {
+/* ============================================================
+   DISEÑO GLOBAL DE TARJETAS (VACANTES Y PROSPECTOS)
+   ============================================================ */
+#vacantes, .prospects-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  gap: 20px !important;
+  padding: 20px !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  align-items: start !important;
+}
+
+#vacantes .card, .prospects-container .card {
   background: #ffffff !important;
   color: #1e324b !important;
-  border-radius: 15px !important;
-  padding: 25px !important;
-  text-align: center !important;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1) !important;
-  border: 1px solid #e0e0e0 !important;
-  min-height: 200px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+  border: 1px solid #dee2e6 !important;
+  width: 100% !important;
 }
 
 /* ============================================================
-   2. REGLAS UNIVERSALES PARA MÓVILES (Pantallas < 800px)
+   DISEÑO RESPONSIVO MÓVIL (Celulares y Tablets)
    ============================================================ */
 @media (max-width: 800px) {
   
-  /* Forzamos que el Login y Registro se apilen verticalmente */
+  /* Login y Registro en Vertical */
   .login-container {
     flex-direction: column !important;
     height: auto !important;
+    min-height: 100vh !important;
     display: flex !important;
   }
-
-  /* Los paneles ocupan el 100% en cualquier celular o tablet */
+  
   .left-panel, .right-panel {
     width: 100% !important;
-    min-width: 100% !important;
-    padding: 40px 20px !important;
+    padding: 30px 20px !important;
     flex: none !important;
   }
-
-  /* El panel verde de MAPS sube para ser el encabezado */
+  
   .right-panel {
-    order: -1 !important; 
-    min-height: 200px !important;
+    order: -1 !important; /* Panel verde MAPS siempre arriba */
+    min-height: 250px !important;
+  }
+  
+  .login-form {
+    max-width: 100% !important;
   }
 
-  /* Ajuste de buscador y encabezado en móvil */
+  /* Dashboard Ajustes Móvil */
   .header {
     flex-direction: column !important;
     gap: 15px !important;
-    text-align: center !important;
+    padding: 15px !important;
   }
-
+  
   .filter-box {
     width: 100% !important;
     flex-direction: column !important;
+    gap: 15px !important;
   }
-}}
+  
+  .filter-box input {
+    width: 100% !important;
+  }
+
+  /* Forzar 1 sola columna en el celular */
+  #vacantes, .prospects-container {
+    grid-template-columns: 1fr !important;
+    padding: 15px !important;
+  }
+  
+  /* Ajuste de Modales en Móvil */
+  .modal-content, .cv-info, .vacante-create-content, .info-modal-content {
+    width: 95% !important;
+    padding: 15px !important;
+  }
+  
+  .cv-layout {
+    flex-direction: column !important;
+  }
+}
